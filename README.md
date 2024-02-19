@@ -52,7 +52,7 @@ Refer to [the comprehensive plugin documentation](https://wpcorner.co/docs/sched
 
 Schedulify is licensed under the GPL-2.0+ License. See the [LICENSE](http://www.gnu.org/licenses/gpl-2.0.txt) file for more information.
 
-## Author
+## Contributors
 
 1. [Patrick Lumumba](https://github.com/lumumbapl)
 2. [WP Corner](https://github.com/wpcorner)
