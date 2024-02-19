@@ -9,7 +9,7 @@ Version: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: schedulify
-*/
+ */
 
 //bail if not WordPress path
 if ( false === defined( 'ABSPATH' ) ) {
@@ -116,14 +116,20 @@ function nv_wpmsp_plugin_row_meta( $links, $file ) {
 	}
 
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$links[] = '<a href="https://wpcorner.co/docs/schedulify/">' . esc_html__( 'Documentation', 'schedulify' ) . '</a>';
+		// Replace "Scheduled Posts" link with "Settings" link
+		$settings_link = '<a href="admin.php?page=nv_wpmsp_settings_page">' . esc_html__( 'Settings', 'schedulify' ) . '</a>';
+		$links[2] = $settings_link;
+
+		// Add "Get Support" link
+		$support_link = '<a href="https://wpcorner.co/contact" target="_blank">' . esc_html__( 'Get Support', 'schedulify' ) . '</a>';
+		$links[] = $support_link;
 	}
 
 	return $links;
 }
 
 /**
- * Add settings link under the Schedulify menu
+ * Add activation link under the Schedulify menu
  */
 function nv_wpmsp_add_settings_link_to_menu() {
 	add_menu_page(
@@ -171,18 +177,6 @@ function nv_wpmsp_sanitize_roles( $input ) {
  * Render settings page
  */
 function nv_wpmsp_render_settings_page() {
-	// Check if the settings have been saved
-	if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ) {
-		?>
-		<div id="message" class="updated notice is-dismissible">
-			<p><strong><?php esc_html_e( 'Settings saved.', 'schedulify' ); ?></strong></p>
-			<button type="button" class="notice-dismiss">
-				<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'schedulify' ); ?></span>
-			</button>
-		</div>
-		<?php
-	}
-
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Schedulify Settings', 'schedulify' ); ?></h1>
@@ -194,54 +188,54 @@ function nv_wpmsp_render_settings_page() {
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'Email Notifications', 'schedulify' ); ?></th>
-					<td>
-						<label>
-							<input type="checkbox" name="nv_wpmsp_email_notifications" value="1" <?php checked( get_option( 'nv_wpmsp_email_notifications', 1 ), 1 ); ?> />
-							<?php esc_html_e( 'Receive email notifications', 'schedulify' ); ?>
-						</label>
-						<?php if ( get_option( 'nv_wpmsp_email_notifications', 1 ) ) : ?>
-							<br>
-							<label for="nv_wpmsp_admin_email">
-								<?php esc_html_e( 'Email Address:', 'schedulify' ); ?>
+						<td>
+							<label>
+								<input type="checkbox" name="nv_wpmsp_email_notifications" value="1" <?php checked( get_option( 'nv_wpmsp_email_notifications', 1 ), 1 ); ?> />
+								<?php esc_html_e( 'Receive email notifications', 'schedulify' ); ?>
 							</label>
-							<input type="email" name="nv_wpmsp_admin_email" value="<?php echo esc_attr( get_option( 'nv_wpmsp_admin_email' ) ); ?>" />
-						<?php endif; ?>
-					</td>
+							<?php if ( get_option( 'nv_wpmsp_email_notifications', 1 ) ) : ?>
+								<br>
+								<label for="nv_wpmsp_admin_email">
+									<?php esc_html_e( 'Email Address:', 'schedulify' ); ?>
+								</label>
+								<input type="email" name="nv_wpmsp_admin_email" value="<?php echo esc_attr( get_option( 'nv_wpmsp_admin_email' ) ); ?>" />
+							<?php endif; ?>
+						</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'Setting Custom Interval', 'schedulify' ); ?></th>
-					<td>
-						<label for="nv_wpmsp_custom_interval">
-							<?php esc_html_e( 'Choose Interval:', 'schedulify' ); ?>
-						</label>
-						<select name="nv_wpmsp_custom_interval" id="nv_wpmsp_custom_interval">
-							<?php
-							$selected_interval = get_option( 'nv_wpmsp_custom_interval', 15 );
-							$intervals         = array( 5, 10, 15, 30, 60 );
+						<td>
+							<label for="nv_wpmsp_custom_interval">
+								<?php esc_html_e( 'Choose Interval:', 'schedulify' ); ?>
+							</label>
+							<select name="nv_wpmsp_custom_interval" id="nv_wpmsp_custom_interval">
+								<?php
+								$selected_interval = get_option( 'nv_wpmsp_custom_interval', 15 );
+								$intervals         = array( 5, 10, 15, 30, 60 );
 
-							foreach ( $intervals as $interval ) {
-								echo '<option value="' . esc_attr( $interval ) . '" ' . selected( $selected_interval, $interval, false ) . '>' . esc_html( $interval ) . ' ' . esc_html__( 'minutes', 'schedulify' ) . '</option>';
-							}
-							?>
-						</select>
-					</td>
+								foreach ( $intervals as $interval ) {
+									echo '<option value="' . esc_attr( $interval ) . '" ' . selected( $selected_interval, $interval, false ) . '>' . esc_html( $interval ) . ' ' . esc_html__( 'minutes', 'schedulify' ) . '</option>';
+								}
+								?>
+							</select>
+						</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row"><?php esc_html_e( 'User Roles Access', 'schedulify' ); ?></th>
-					<td>
-						<?php
-						$allowed_roles = get_option( 'nv_wpmsp_allowed_roles', array() );
-						$all_roles     = wp_roles()->get_names();
+						<td>
+							<?php
+							$allowed_roles = get_option( 'nv_wpmsp_allowed_roles', array() );
+							$all_roles     = wp_roles()->get_names();
 
-						foreach ( $all_roles as $role => $label ) :
-							?>
-							<label>
-								<input type="checkbox" name="nv_wpmsp_allowed_roles[]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, $allowed_roles ), true ); ?> />
-								<?php echo esc_html( $label ); ?>
-							</label>
-							<br>
-						<?php endforeach; ?>
-					</td>
+							foreach ( $all_roles as $role => $label ) :
+								?>
+								<label>
+									<input type="checkbox" name="nv_wpmsp_allowed_roles[]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, $allowed_roles ), true ); ?> />
+									<?php echo esc_html( $label ); ?>
+								</label>
+								<br>
+							<?php endforeach; ?>
+						</td>
 				</tr>
 			</table>
 
