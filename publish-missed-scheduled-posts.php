@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Publish Missed Scheduled Posts
-Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron.
+Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators.
 Author: WP Corner
 Contributors: wpcorner, lumiblog
 Author URI: https://wpcorner.co
-Version: 1.1
+Version: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: publish-missed-scheduled-posts
@@ -27,6 +27,11 @@ if ( false === defined( 'WPMSP_INTERVAL' ) ) {
 // Set post limit
 if ( false === defined( 'WPMSP_POST_LIMIT' ) ) {
 	define( 'WPMSP_POST_LIMIT', 20 );
+}
+
+// Email Notifications option
+if ( ! defined( 'WPMSP_EMAIL_NOTIFICATIONS' ) ) {
+	define( 'WPMSP_EMAIL_NOTIFICATIONS', true );
 }
 
 // Hook into WordPress
@@ -68,7 +73,26 @@ function nv_wpmsp_init() {
 		}
 
 		wp_publish_post( $scheduled_post_id );
+
+		// Send Email Notification
+		if ( WPMSP_EMAIL_NOTIFICATIONS ) {
+			nv_wpmsp_send_email_notification( $scheduled_post_id );
+		}
 	}
+}
+
+/**
+ * Send email notification to administrators
+ *
+ * @param int $post_id
+ */
+function nv_wpmsp_send_email_notification( $post_id ) {
+	$admin_email = get_option( 'admin_email' );
+
+	$subject = sprintf( esc_html__( 'Scheduled Post Published: #%d', 'publish-missed-scheduled-posts' ), $post_id );
+	$message = sprintf( esc_html__( 'The scheduled post #%d has been published.', 'publish-missed-scheduled-posts' ), $post_id );
+
+	wp_mail( $admin_email, $subject, $message );
 }
 
 /**
