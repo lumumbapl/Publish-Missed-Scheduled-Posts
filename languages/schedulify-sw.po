@@ -1,0 +1,92 @@
+# Translation of schedulify in Swahili
+# This file is distributed under the same license as the schedulify package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-02-19 22:40:19+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0-beta.2\n"
+"Language: sw\n"
+"Project-Id-Version: schedulify\n"
+
+#. Author URI of the plugin/theme
+msgid "https://wpcorner.co"
+msgstr "https://wpcorner.co"
+
+#. Author of the plugin/theme
+msgid "WP Corner"
+msgstr "WP Corner"
+
+#. Description of the plugin/theme
+msgid "WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators."
+msgstr "Programu-jalizi ya WordPress ambayo huchapisha kiotomati machapisho yote yaliyopangwa yaliyokosa na WordPress cron. Hutuma arifa za barua pepe kwa wasimamizi."
+
+#: schedulify.php:254
+msgid "Save Settings"
+msgstr "Hifadhi Mipangilio"
+
+#: schedulify.php:236
+msgid "User Roles Access"
+msgstr "Ufikiaji wa Majukumu ya Mtumiaji"
+
+#: schedulify.php:229
+msgid "minutes"
+msgstr "dakika"
+
+#: schedulify.php:221
+msgid "Choose Interval:"
+msgstr "Chagua Muda:"
+
+#: schedulify.php:218
+msgid "Setting Custom Interval"
+msgstr "Kuweka Muda Maalum"
+
+#: schedulify.php:211
+msgid "Email Address:"
+msgstr "Barua Pepe:"
+
+#: schedulify.php:206
+msgid "Receive email notifications"
+msgstr "Pokea arifa za barua pepe"
+
+#: schedulify.php:202
+msgid "Email Notifications"
+msgstr "Arifa za Barua Pepe"
+
+#: schedulify.php:194
+msgid "Schedulify Settings"
+msgstr "Mipangilio ya Schedulify"
+
+#: schedulify.php:186
+msgid "Dismiss this notice."
+msgstr "Ondoa notisi hii."
+
+#: schedulify.php:184
+msgid "Settings saved."
+msgstr "Mipangilio imehifadhiwa."
+
+#: schedulify.php:158 schedulify.php:159 schedulify.php:266
+msgid "Cron Event Stats"
+msgstr "Takwimu za Tukio la Cron"
+
+#. Plugin Name of the plugin/theme
+msgid "Schedulify"
+msgstr "Schedulify"
+
+#: schedulify.php:122
+msgid "Documentation"
+msgstr "Nyaraka"
+
+#: schedulify.php:100 schedulify.php:145 schedulify.php:146
+msgid "Scheduled Posts"
+msgstr "Machapisho Yaliyoratibiwa"
+
+#: schedulify.php:87
+msgid "The scheduled post #%d has been published."
+msgstr "Chapisho lililoratibiwa #%d limechapishwa."
+
+#: schedulify.php:86
+msgid "Scheduled Post Published: #%d"
+msgstr "Chapisho Lililoratibiwa Limechapishwa: #%d"
