@@ -8,37 +8,43 @@ Author URI: https://wpcorner.co
 Version: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: publish-missed-scheduled-posts
  */
 
-//bail if not wordpress path
+//bail if not WordPress path
 if ( false === defined( 'ABSPATH' ) ) {
 	return;
 }
-//plugin basename for further refrence
+
+//plugin basename for further reference
 $nv_wpms_base_name = plugin_basename( __FILE__ );
 
-//Set default check interval - every 10 min
+// Set default check interval - every 10 min
 if ( false === defined( 'WPMSP_INTERVAL' ) ) {
 	define( 'WPMSP_INTERVAL', 15 * MINUTE_IN_SECONDS );
 }
-//Set post limit
+
+// Set post limit
 if ( false === defined( 'WPMSP_POST_LIMIT' ) ) {
 	define( 'WPMSP_POST_LIMIT', 20 );
 }
-//Hook into WordPress
+
+// Hook into WordPress
 add_action( 'init', 'nv_wpmsp_init', 0 );
-//Plugin Actions
+
+// Plugin Actions
 add_filter( 'plugin_action_links_' . $nv_wpms_base_name, 'nv_wpmsp_plugin_activation_link', 10, 1 );
 add_filter( 'plugin_row_meta', 'nv_wpmsp_plugin_row_meta', 10, 2 );
 
+// Add activation link under the Posts menu
+add_action( 'admin_menu', 'nv_wpmsp_add_activation_link_to_menu' );
+
 /**
- * Check timestamp from transient and published all missed posts
+ * Check timestamp from transient and publish all missed posts
  */
 function nv_wpmsp_init() {
-
 	$last_scheduled_missed_time = get_transient( 'wp_scheduled_missed_time' );
-
-	$time = current_time( 'timestamp', 0 );
+	$time                       = current_time( 'timestamp', 0 );
 
 	if ( false !== $last_scheduled_missed_time && absint( $last_scheduled_missed_time ) > ( $time - WPMSP_INTERVAL ) ) {
 		return;
@@ -48,10 +54,8 @@ function nv_wpmsp_init() {
 
 	global $wpdb;
 
-	$sql_query = "SELECT ID FROM {$wpdb->posts} WHERE ( ( post_date > 0 && post_date <= %s ) ) AND post_status = 'future' LIMIT 0,%d";
-
-	$sql = $wpdb->prepare( $sql_query, current_time( 'mysql', 0 ), WPMSP_POST_LIMIT );
-
+	$sql_query           = "SELECT ID FROM {$wpdb->posts} WHERE ( ( post_date > 0 && post_date <= %s ) ) AND post_status = 'future' LIMIT 0,%d";
+	$sql                 = $wpdb->prepare( $sql_query, current_time( 'mysql', 0 ), WPMSP_POST_LIMIT );
 	$scheduled_post_ids = $wpdb->get_col( $sql );
 
 	if ( ! count( $scheduled_post_ids ) ) {
@@ -67,7 +71,6 @@ function nv_wpmsp_init() {
 	}
 }
 
-
 /**
  * Add plugin activation link
  *
@@ -76,7 +79,7 @@ function nv_wpmsp_init() {
  * @return array
  */
 function nv_wpmsp_plugin_activation_link( $links ) {
-	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Scheduled Posts', 'nv-wpmsp' ). '</a>';
+	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ) . '</a>';
 
 	return $links;
 }
@@ -88,20 +91,30 @@ function nv_wpmsp_plugin_activation_link( $links ) {
  *
  * @return array
  */
-
 function nv_wpmsp_plugin_row_meta( $links, $file ) {
 	if ( false === is_admin() ) {
 		return;
 	}
-
 
 	if ( false === current_user_can( 'administrator' ) ) {
 		return;
 	}
 
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$links[] = '<a href="https://wpcorner.co/contact/">' . esc_html__( 'Contact', 'nv-wpmsp' ) . '</a>';
+		$links[] = '<a href="https://wpcorner.co/contact/">' . esc_html__( 'Contact', 'publish-missed-scheduled-posts' ) . '</a>';
 	}
 
 	return $links;
+}
+
+/**
+ * Add activation link under the Posts menu
+ */
+function nv_wpmsp_add_activation_link_to_menu() {
+	add_posts_page(
+		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		'read',
+		'edit.php?post_status=future&post_type=post'
+	);
 }
