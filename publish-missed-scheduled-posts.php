@@ -139,8 +139,8 @@ function nv_wpmsp_add_activation_link_to_menu() {
  */
 function nv_wpmsp_add_settings_link_to_menu() {
 	add_menu_page(
-		esc_html__( 'PM Scheduled Posts', 'publish-missed-scheduled-posts' ),
-		esc_html__( 'PM Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'PMS Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'Pblish Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
 		'manage_options',
 		'nv_wpmsp_settings_page',
 		'nv_wpmsp_render_settings_page',
