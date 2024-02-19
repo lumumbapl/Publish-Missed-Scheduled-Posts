@@ -1,0 +1,14 @@
+{
+    "name": "lumumbapl/publish-missed-scheduled-posts",
+    "description": "WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Patrick Lumumba",
+            "email": "info@wpcorner.co"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
