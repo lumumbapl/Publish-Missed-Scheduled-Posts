@@ -10,45 +10,51 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Manuel is a WordPress plugin that searches and removes broken links and images in WordPress posts.
 
-== Description ==
+# Schedulify WordPress Plugin
 
-Schedulify is a powerful WordPress plugin designed to streamline the management of scheduled posts, ensuring timely publication and providing essential tools for administrators. 
-This plugin addresses the common challenges associated with WordPress cron and enhances the scheduled post publishing process.
+*Schedulify* is a powerful WordPress plugin designed to streamline the management of scheduled posts, ensuring timely publication and providing essential tools for administrators. This plugin addresses the common challenges associated with WordPress cron and enhances the scheduled post publishing process.
 
-== Features ==
+## Key Features:
 
-- Monitors external links and internal links in your posts and pages.
-- Detects broken links and missing images.
-- Removes broken links and missing images.
-- Edit links directly from your interface without manually updating each post.
-- View stats via your dashboard or email.
-- Prevents search engines from following broken links.
+### Automated Scheduled Post Publication:
+Schedulify takes charge of scheduled post publication, automatically publishing posts that may have been missed by the default WordPress cron.
 
-== Usage ==
+### Email Notifications:
+Receive instant email notifications upon the successful publication of scheduled posts. Keep administrators informed about the latest updates directly in their inbox.
 
-To monitor the status of broken links and images, navigate to the WordPress admin dashboard and select Manuel > Manuel Link Stats. Here, you'll find a comprehensive list of broken links, including details such as Post Title, Original Link, Anchor Text, and the time when the link was removed.
+### Customizable Interval Settings:
+Tailor the plugin to your needs by setting a custom interval for scheduled post checks. Choose intervals from 5 to 60 minutes, providing flexibility based on your site's requirements.
 
-== Efficiency ==
+### User Role Access Control:
+Fine-tune access control by specifying user roles that are permitted to manage the Schedulify settings. This feature ensures that only authorized users can configure and monitor the plugin.
 
-Notably, Manuel is a lightweight plugin that avoids adding unnecessary scripts to your WordPress website, ensuring efficient performance without compromising speed.
+### Detailed Plugin Settings:
+Access a dedicated settings page within the WordPress dashboard, offering a user-friendly interface for configuring Schedulify. Admins can easily manage email notifications, custom intervals, and user role access.
 
-== Installation ==
+### Plugin Activation Link:
+Directly access the list of scheduled posts from the WordPress dashboard by utilizing the convenient "Scheduled Posts" link added under the 'Posts' menu.
 
-1. Go to the WordPress admin dashboard
-3. Navigate to `Plugins` > `Add New`
-4. Search for Manuel or 'Broken Image and Link Remover'
-5. Click `Install Now`
-6. Activate the plugin
+### Documentation and Support:
+Refer to the comprehensive plugin documentation for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions (FAQs):
 
-= Does this plugin automatically run on a schedule? =
+**Q1:** How does Schedulify ensure scheduled posts are not missed?
+**A:** Schedulify automatically checks for missed scheduled posts, ensuring they are published promptly. It complements the default WordPress cron system to prevent any lapses.
 
-Yes, after activating the plugin, it will automatically run on a schedule and search for broken links and images in your WordPress posts.
+**Q2:** Can I customize the interval for checking scheduled posts?
+**A:** Yes, Schedulify offers customizable interval settings. You can choose intervals between 5 and 60 minutes based on your site's needs.
 
-= How can I view the removed links and images? =
+**Q3:** What happens if I enable email notifications?
+**A:** Enabling email notifications ensures that administrators receive instant notifications upon the successful publication of scheduled posts. This feature keeps you informed about the latest updates on your site.
 
-You can view the removed links and images by navigating to the plugin's admin interface.
+**Q4:** How can I control access to Schedulify settings?
+**A:** Schedulify allows you to control access by specifying user roles that are authorized to manage the plugin settings. This enhances security and ensures only authorized users can configure the plugin.
+
+**Q5:** Where can I find detailed documentation and get support?
+**A:** Refer to our [Documentation](#) for comprehensive guidance on Schedulify. For support, visit our [Support Page](#).
+
+*Schedulify* is your reliable solution for efficient scheduled post management in WordPress, combining automation with user-friendly customization options. Upgrade your publishing workflow with Schedulify today!
 
 == Screenshots ==
 
