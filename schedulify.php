@@ -9,7 +9,7 @@ Version: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: schedulify
- */
+*/
 
 //bail if not WordPress path
 if ( false === defined( 'ABSPATH' ) ) {
@@ -171,6 +171,18 @@ function nv_wpmsp_sanitize_roles( $input ) {
  * Render settings page
  */
 function nv_wpmsp_render_settings_page() {
+	// Check if the settings have been saved
+	if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] ) {
+		?>
+		<div id="message" class="updated notice is-dismissible">
+			<p><strong><?php esc_html_e( 'Settings saved.', 'schedulify' ); ?></strong></p>
+			<button type="button" class="notice-dismiss">
+				<span class="screen-reader-text"><?php esc_html_e( 'Dismiss this notice.', 'schedulify' ); ?></span>
+			</button>
+		</div>
+		<?php
+	}
+
 	?>
 	<div class="wrap">
 		<h1><?php esc_html_e( 'Schedulify Settings', 'schedulify' ); ?></h1>
