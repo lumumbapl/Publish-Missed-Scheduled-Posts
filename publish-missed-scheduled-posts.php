@@ -5,7 +5,7 @@ Description: WordPress plugin that automatically publishes all the scheduled pos
 Author: WP Corner
 Contributors: wpcorner, lumiblog
 Author URI: https://wpcorner.co
-Version: 1.3
+Version: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: publish-missed-scheduled-posts
@@ -135,15 +135,26 @@ function nv_wpmsp_add_activation_link_to_menu() {
 }
 
 /**
- * Add settings link under the Settings menu
+ * Add settings link under the Missed Scheduled Posts menu
  */
 function nv_wpmsp_add_settings_link_to_menu() {
-	add_options_page(
-		esc_html__( 'Missed Scheduled Posts Settings', 'publish-missed-scheduled-posts' ),
+	add_menu_page(
+		esc_html__( 'Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
 		esc_html__( 'Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
 		'manage_options',
 		'nv_wpmsp_settings_page',
-		'nv_wpmsp_render_settings_page'
+		'nv_wpmsp_render_settings_page',
+		'dashicons-admin-tools'
+	);
+
+	// Move Scheduled Posts submenu
+	remove_submenu_page( 'edit.php?post_status=future&post_type=post', 'edit.php?post_status=future&post_type=post' );
+	add_submenu_page(
+		'nv_wpmsp_settings_page',
+		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		'read',
+		'edit.php?post_status=future&post_type=post'
 	);
 }
 
