@@ -2,8 +2,8 @@
 /*
 Plugin Name: Publish Missed Scheduled Posts
 Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron.
-Author: Patrick Lumumba
-Contributors: wpcorner
+Author: WP Corner
+Contributors: wpcorner, lumiblog
 Author URI: https://wpcorner.co
 Version: 1.1
 License: GPLv2 or later
@@ -101,7 +101,7 @@ function nv_wpmsp_plugin_row_meta( $links, $file ) {
 	}
 
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$links[] = '<a href="https://wpcorner.co/contact/">' . esc_html__( 'Contact', 'publish-missed-scheduled-posts' ) . '</a>';
+		$links[] = '<a href="https://wpcorner.co/docs/publish-missed-scheduled-posts/">' . esc_html__( 'Documentation', 'publish-missed-scheduled-posts' ) . '</a>';
 	}
 
 	return $links;
