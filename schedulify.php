@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Publish Missed Scheduled Posts
+Plugin Name: Schedulify
 Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators.
 Author: WP Corner
 Contributors: wpcorner, lumiblog
@@ -8,7 +8,7 @@ Author URI: https://wpcorner.co
 Version: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: publish-missed-scheduled-posts
+Text Domain: schedulify
  */
 
 //bail if not WordPress path
@@ -80,8 +80,8 @@ function nv_wpmsp_init() {
 function nv_wpmsp_send_email_notification( $post_id ) {
 	$admin_email = get_option( 'admin_email' );
 
-	$subject = sprintf( esc_html__( 'Scheduled Post Published: #%d', 'publish-missed-scheduled-posts' ), $post_id );
-	$message = sprintf( esc_html__( 'The scheduled post #%d has been published.', 'publish-missed-scheduled-posts' ), $post_id );
+	$subject = sprintf( esc_html__( 'Scheduled Post Published: #%d', 'schedulify' ), $post_id );
+	$message = sprintf( esc_html__( 'The scheduled post #%d has been published.', 'schedulify' ), $post_id );
 
 	wp_mail( $admin_email, $subject, $message );
 }
@@ -94,7 +94,7 @@ function nv_wpmsp_send_email_notification( $post_id ) {
  * @return array
  */
 function nv_wpmsp_plugin_activation_link( $links ) {
-	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ) . '</a>';
+	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Scheduled Posts', 'schedulify' ) . '</a>';
 
 	return $links;
 }
@@ -116,43 +116,31 @@ function nv_wpmsp_plugin_row_meta( $links, $file ) {
 	}
 
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$links[] = '<a href="https://wpcorner.co/docs/publish-missed-scheduled-posts/">' . esc_html__( 'Documentation', 'publish-missed-scheduled-posts' ) . '</a>';
+		$links[] = '<a href="https://wpcorner.co/docs/schedulify/">' . esc_html__( 'Documentation', 'schedulify' ) . '</a>';
 	}
 
 	return $links;
 }
 
 /**
- * Add activation link under the Posts menu
- */
-function nv_wpmsp_add_activation_link_to_menu() {
-	add_posts_page(
-		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
-		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
-		'read',
-		'edit.php?post_status=future&post_type=post'
-	);
-}
-
-/**
- * Add settings link under the PM Scheduled Posts menu
+ * Add settings link under the Schedulify menu
  */
 function nv_wpmsp_add_settings_link_to_menu() {
 	add_menu_page(
-		esc_html__( 'PMS Posts', 'publish-missed-scheduled-posts' ),
-		esc_html__( 'Pblish Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'Schedulify', 'schedulify' ),
+		esc_html__( 'Schedulify', 'schedulify' ),
 		'manage_options',
 		'nv_wpmsp_settings_page',
 		'nv_wpmsp_render_settings_page',
-		'dashicons-calendar'
+		'dashicons-admin-tools'
 	);
 
 	// Move Scheduled Posts submenu
 	remove_submenu_page( 'edit.php?post_status=future&post_type=post', 'edit.php?post_status=future&post_type=post' );
 	add_submenu_page(
 		'nv_wpmsp_settings_page',
-		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
-		esc_html__( 'Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'Scheduled Posts', 'schedulify' ),
+		esc_html__( 'Scheduled Posts', 'schedulify' ),
 		'read',
 		'edit.php?post_status=future&post_type=post'
 	);
@@ -185,7 +173,7 @@ function nv_wpmsp_sanitize_roles( $input ) {
 function nv_wpmsp_render_settings_page() {
 	?>
 	<div class="wrap">
-		<h1><?php esc_html_e( 'Missed Scheduled Posts Settings', 'publish-missed-scheduled-posts' ); ?></h1>
+		<h1><?php esc_html_e( 'Schedulify Settings', 'schedulify' ); ?></h1>
 
 		<form method="post" action="options.php">
 			<?php settings_fields( 'nv_wpmsp_settings_group' ); ?>
@@ -193,26 +181,26 @@ function nv_wpmsp_render_settings_page() {
 
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row"><?php esc_html_e( 'Email Notifications', 'publish-missed-scheduled-posts' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'Email Notifications', 'schedulify' ); ?></th>
 					<td>
 						<label>
 							<input type="checkbox" name="nv_wpmsp_email_notifications" value="1" <?php checked( get_option( 'nv_wpmsp_email_notifications', 1 ), 1 ); ?> />
-							<?php esc_html_e( 'Receive email notifications', 'publish-missed-scheduled-posts' ); ?>
+							<?php esc_html_e( 'Receive email notifications', 'schedulify' ); ?>
 						</label>
 						<?php if ( get_option( 'nv_wpmsp_email_notifications', 1 ) ) : ?>
 							<br>
 							<label for="nv_wpmsp_admin_email">
-								<?php esc_html_e( 'Email Address:', 'publish-missed-scheduled-posts' ); ?>
+								<?php esc_html_e( 'Email Address:', 'schedulify' ); ?>
 							</label>
 							<input type="email" name="nv_wpmsp_admin_email" value="<?php echo esc_attr( get_option( 'nv_wpmsp_admin_email' ) ); ?>" />
 						<?php endif; ?>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php esc_html_e( 'Setting Custom Interval', 'publish-missed-scheduled-posts' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'Setting Custom Interval', 'schedulify' ); ?></th>
 					<td>
 						<label for="nv_wpmsp_custom_interval">
-							<?php esc_html_e( 'Choose Interval:', 'publish-missed-scheduled-posts' ); ?>
+							<?php esc_html_e( 'Choose Interval:', 'schedulify' ); ?>
 						</label>
 						<select name="nv_wpmsp_custom_interval" id="nv_wpmsp_custom_interval">
 							<?php
@@ -220,14 +208,14 @@ function nv_wpmsp_render_settings_page() {
 							$intervals         = array( 5, 10, 15, 30, 60 );
 
 							foreach ( $intervals as $interval ) {
-								echo '<option value="' . esc_attr( $interval ) . '" ' . selected( $selected_interval, $interval, false ) . '>' . esc_html( $interval ) . ' ' . esc_html__( 'minutes', 'publish-missed-scheduled-posts' ) . '</option>';
+								echo '<option value="' . esc_attr( $interval ) . '" ' . selected( $selected_interval, $interval, false ) . '>' . esc_html( $interval ) . ' ' . esc_html__( 'minutes', 'schedulify' ) . '</option>';
 							}
 							?>
 						</select>
 					</td>
 				</tr>
 				<tr valign="top">
-					<th scope="row"><?php esc_html_e( 'User Roles Access', 'publish-missed-scheduled-posts' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'User Roles Access', 'schedulify' ); ?></th>
 					<td>
 						<?php
 						$allowed_roles = get_option( 'nv_wpmsp_allowed_roles', array() );
@@ -245,7 +233,7 @@ function nv_wpmsp_render_settings_page() {
 				</tr>
 			</table>
 
-			<?php submit_button( esc_html__( 'Save Settings', 'publish-missed-scheduled-posts' ) ); ?>
+			<?php submit_button( esc_html__( 'Save Settings', 'schedulify' ) ); ?>
 		</form>
 	</div>
 	<?php
