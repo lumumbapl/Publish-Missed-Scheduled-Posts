@@ -135,16 +135,16 @@ function nv_wpmsp_add_activation_link_to_menu() {
 }
 
 /**
- * Add settings link under the Missed Scheduled Posts menu
+ * Add settings link under the PM Scheduled Posts menu
  */
 function nv_wpmsp_add_settings_link_to_menu() {
 	add_menu_page(
-		esc_html__( 'Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
-		esc_html__( 'Missed Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'PM Scheduled Posts', 'publish-missed-scheduled-posts' ),
+		esc_html__( 'PM Scheduled Posts', 'publish-missed-scheduled-posts' ),
 		'manage_options',
 		'nv_wpmsp_settings_page',
 		'nv_wpmsp_render_settings_page',
-		'dashicons-admin-tools'
+		'dashicons-admin-calendar'
 	);
 
 	// Move Scheduled Posts submenu
