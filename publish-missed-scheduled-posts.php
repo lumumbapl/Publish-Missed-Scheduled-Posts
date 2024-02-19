@@ -144,7 +144,7 @@ function nv_wpmsp_add_settings_link_to_menu() {
 		'manage_options',
 		'nv_wpmsp_settings_page',
 		'nv_wpmsp_render_settings_page',
-		'dashicons-admin-calendar'
+		'dashicons-calendar'
 	);
 
 	// Move Scheduled Posts submenu
