@@ -76,7 +76,7 @@ function nv_wpmsp_init() {
  * @return array
  */
 function nv_wpmsp_plugin_activation_link( $links ) {
-	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Miss', 'nv-wpmsp' ) . '</a>';
+	$links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__( 'Missed Publishing', 'nv-wpmsp' ) . '</a>';
 
 	return $links;
 }
@@ -100,7 +100,7 @@ function nv_wpmsp_plugin_row_meta( $links, $file ) {
 	}
 
 	if ( $file == plugin_basename( __FILE__ ) ) {
-		$links[] = '<a href="https://newvariable.com/contact/">' . esc_html__( 'Contact', 'nv-wpmsp' ) . '</a>';
+		$links[] = '<a href="https://wpcorner.co/contact/">' . esc_html__( 'Contact', 'nv-wpmsp' ) . '</a>';
 	}
 
 	return $links;
