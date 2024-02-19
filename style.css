@@ -1,0 +1,29 @@
+/* style.css */
+
+.wrap {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.form-table {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.form-table th,
+.form-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.form-table th {
+    background-color: #f2f2f2;
+}
+
+#submit {
+    background-color: #8B0D11;
+    color: #ffffff;
+    border: 1px solid #8B0D11;
+    padding: 10px 20px;
+}
