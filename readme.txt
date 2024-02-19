@@ -1,14 +1,14 @@
-=== Manuel ===
-Contributors: smartkenyan
-Donate link: https://nabaleka.com/
-Tags: broken links, broken images, links, images, posts
+=== Schedulify ===
+Contributors: lumumbapl, wpcorner
+Donate link: https://wpcorner.co/donate
+Tags: scheduled posts, blog posts, blog, posts, schedule posts, images, publish
 Requires at least: 5.8
 Tested up to: 6.3.4
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Manuel is a WordPress plugin that searches and removes broken links and images in WordPress posts.
+Schedulify is a WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators.
 
 # Schedulify WordPress Plugin
 
