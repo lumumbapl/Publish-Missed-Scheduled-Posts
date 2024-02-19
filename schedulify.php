@@ -36,16 +36,6 @@ add_action( 'admin_menu', 'nv_wpmsp_add_settings_link_to_menu' );
 add_action( 'admin_init', 'nv_wpmsp_register_settings' );
 
 /**
- * Enqueue custom styles
- */
-function nv_wpmsp_enqueue_custom_styles() {
-    // Enqueue style.css file
-    wp_enqueue_style( 'nv_wpmsp_style', plugin_dir_url( __FILE__ ) . 'style.css' );
-}
-
-/**
-
-/**
  * Check timestamp from transient and publish all missed posts
  */
 function nv_wpmsp_init() {
