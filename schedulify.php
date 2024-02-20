@@ -268,6 +268,7 @@ function nv_wpmsp_render_cron_event_stats_page() {
         <?php
         $last_scheduled_missed_time = get_transient( 'wp_scheduled_missed_time' );
         $missed_posts_count         = nv_wpmsp_get_missed_posts_count();
+        $missed_posts              = nv_wpmsp_get_missed_posts();
 
         if ( false !== $last_scheduled_missed_time ) :
             ?>
@@ -275,6 +276,15 @@ function nv_wpmsp_render_cron_event_stats_page() {
             <?php endif; ?>
 
         <p><?php esc_html_e( 'Missed Scheduled Posts:', 'schedulify' ); ?> <?php echo esc_html( $missed_posts_count ); ?></p>
+
+        <?php if ( $missed_posts_count > 0 ) : ?>
+            <h2><?php esc_html_e( 'List of Missed Scheduled Posts:', 'schedulify' ); ?></h2>
+            <ul>
+                <?php foreach ( $missed_posts as $missed_post ) : ?>
+                    <li><?php echo esc_html( get_the_title( $missed_post->ID ) ); ?> - <?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $missed_post->post_date ) ) ); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
     </div>
     <?php
 }
@@ -318,4 +328,18 @@ function nv_wpmsp_get_missed_posts_count() {
     $missed_posts_count = $wpdb->get_var( $sql_query );
 
     return $missed_posts_count;
+}
+
+/**
+ * Get the list of missed scheduled posts
+ *
+ * @return array
+ */
+function nv_wpmsp_get_missed_posts() {
+    global $wpdb;
+
+    $sql_query           = "SELECT ID, post_date FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'future'";
+    $missed_posts = $wpdb->get_results( $sql_query );
+
+    return $missed_posts;
 }
