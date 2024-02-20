@@ -281,7 +281,16 @@ function nv_wpmsp_render_cron_event_stats_page() {
             <h2><?php esc_html_e( 'List of Missed Scheduled Posts:', 'schedulify' ); ?></h2>
             <ul>
                 <?php foreach ( $missed_posts as $missed_post ) : ?>
-                    <li><?php echo esc_html( get_the_title( $missed_post->ID ) ); ?> - <?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $missed_post->post_date ) ) ); ?></li>
+                    <?php
+                    $post_edit_link = get_edit_post_link( $missed_post->ID );
+                    $post_view_link = get_permalink( $missed_post->ID );
+                    ?>
+                    <li>
+                        <?php echo esc_html( get_the_title( $missed_post->ID ) ); ?>
+                        - <?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $missed_post->post_date ) ) ); ?>
+                        (<?php echo '<a href="' . esc_url( $post_view_link ) . '" target="_blank">' . esc_html__( 'View', 'schedulify' ) . '</a>'; ?> |
+                        <?php echo '<a href="' . esc_url( $post_edit_link ) . '" target="_blank">' . esc_html__( 'Edit', 'schedulify' ) . '</a>'; ?>)
+                    </li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
@@ -324,7 +333,7 @@ function nv_wpmsp_get_email_notifications() {
 function nv_wpmsp_get_missed_posts_count() {
     global $wpdb;
 
-    $sql_query           = "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'future'";
+    $sql_query           = "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'publish' AND post_type = 'post'";
     $missed_posts_count = $wpdb->get_var( $sql_query );
 
     return $missed_posts_count;
@@ -338,7 +347,7 @@ function nv_wpmsp_get_missed_posts_count() {
 function nv_wpmsp_get_missed_posts() {
     global $wpdb;
 
-    $sql_query           = "SELECT ID, post_date FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'future'";
+    $sql_query           = "SELECT ID, post_date FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'publish' AND post_type = 'post'";
     $missed_posts = $wpdb->get_results( $sql_query );
 
     return $missed_posts;
