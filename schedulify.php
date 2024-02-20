@@ -279,76 +279,54 @@ function nv_wpmsp_render_cron_event_stats_page() {
 
         <?php if ( $missed_posts_count > 0 ) : ?>
             <h2><?php esc_html_e( 'List of Missed Scheduled Posts:', 'schedulify' ); ?></h2>
-            <ul>
-                <?php foreach ( $missed_posts as $missed_post ) : ?>
-                    <?php
-                    $post_edit_link = get_edit_post_link( $missed_post->ID );
-                    $post_view_link = get_permalink( $missed_post->ID );
-                    ?>
-                    <li>
-                        <?php echo esc_html( get_the_title( $missed_post->ID ) ); ?>
-                        - <?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $missed_post->post_date ) ) ); ?>
-                        (<?php echo '<a href="' . esc_url( $post_view_link ) . '" target="_blank">' . esc_html__( 'View', 'schedulify' ) . '</a>'; ?> |
-                        <?php echo '<a href="' . esc_url( $post_edit_link ) . '" target="_blank">' . esc_html__( 'Edit', 'schedulify' ) . '</a>'; ?>)
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <table class="wp-list-table widefat fixed striped">
+                <thead>
+                    <tr>
+                        <th><?php esc_html_e( 'No.', 'schedulify' ); ?></th>
+                        <th><?php esc_html_e( 'Title', 'schedulify' ); ?></th>
+                        <th><?php esc_html_e( 'Published Time', 'schedulify' ); ?></th>
+                        <th><?php esc_html_e( 'Actions', 'schedulify' ); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ( $missed_posts as $index => $missed_post ) : ?>
+                        <?php
+                        $post_edit_link = get_edit_post_link( $missed_post->ID );
+                        $post_view_link = get_permalink( $missed_post->ID );
+                        ?>
+                        <tr>
+                            <td><?php echo esc_html( $index + 1 ); ?></td>
+                            <td><?php echo esc_html( get_the_title( $missed_post->ID ) ); ?></td>
+                            <td><?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), strtotime( $missed_post->post_date ) ) ); ?></td>
+                            <td>
+                                <a href="<?php echo esc_url( $post_edit_link ); ?>" class="button"><?php esc_html_e( 'Edit', 'schedulify' ); ?></a>
+                                <a href="<?php echo esc_url( $post_view_link ); ?>" class="button"><?php esc_html_e( 'View', 'schedulify' ); ?></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+
+            <!-- Add a button to reset Cron Event Stats -->
+            <form method="post">
+                <?php wp_nonce_field( 'nv_wpmsp_reset_stats_nonce', 'nv_wpmsp_reset_stats_nonce' ); ?>
+                <p>
+                    <button type="submit" class="button" name="nv_wpmsp_reset_stats"><?php esc_html_e( 'Reset Cron Event Stats', 'schedulify' ); ?></button>
+                </p>
+            </form>
         <?php endif; ?>
     </div>
     <?php
 }
 
 /**
- * Get the configured post limit
- *
- * @return int
+ * Reset Cron Event Stats
  */
-function nv_wpmsp_get_post_limit() {
-    return apply_filters( 'nv_wpmsp_post_limit', get_option( 'nv_wpmsp_post_limit', 20 ) );
+function nv_wpmsp_reset_stats() {
+    if ( isset( $_POST['nv_wpmsp_reset_stats'] ) && wp_verify_nonce( $_POST['nv_wpmsp_reset_stats_nonce'], 'nv_wpmsp_reset_stats_nonce' ) ) {
+        delete_transient( 'wp_scheduled_missed_time' );
+        wp_safe_redirect( admin_url( 'admin.php?page=nv_wpmsp_cron_event_stats_page' ) );
+        exit;
+    }
 }
-
-/**
- * Get the configured interval
- *
- * @return int
- */
-function nv_wpmsp_get_interval() {
-    return apply_filters( 'nv_wpmsp_interval', get_option( 'nv_wpmsp_custom_interval', 15 ) * MINUTE_IN_SECONDS );
-}
-
-/**
- * Get the configured email notifications status
- *
- * @return bool
- */
-function nv_wpmsp_get_email_notifications() {
-    return apply_filters( 'nv_wpmsp_email_notifications', get_option( 'nv_wpmsp_email_notifications', true ) );
-}
-
-/**
- * Get the count of missed scheduled posts
- *
- * @return int
- */
-function nv_wpmsp_get_missed_posts_count() {
-    global $wpdb;
-
-    $sql_query           = "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'publish' AND post_type = 'post'";
-    $missed_posts_count = $wpdb->get_var( $sql_query );
-
-    return $missed_posts_count;
-}
-
-/**
- * Get the list of missed scheduled posts
- *
- * @return array
- */
-function nv_wpmsp_get_missed_posts() {
-    global $wpdb;
-
-    $sql_query           = "SELECT ID, post_date FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'publish' AND post_type = 'post'";
-    $missed_posts = $wpdb->get_results( $sql_query );
-
-    return $missed_posts;
-}
+add_action( 'admin_init', 'nv_wpmsp_reset_stats' );
