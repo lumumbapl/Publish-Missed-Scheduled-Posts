@@ -5,10 +5,11 @@ Description: WordPress plugin that automatically publishes all the scheduled pos
 Author: WP Corner
 Contributors: wpcorner, lumiblog
 Author URI: https://wpcorner.co
-Version: 1.4
+Version: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: schedulify
+Domain Path: /languages
 */
 
 //bail if not WordPress path
