@@ -264,7 +264,17 @@ function nv_wpmsp_render_cron_event_stats_page() {
     ?>
     <div class="wrap">
         <h1><?php esc_html_e( 'Cron Event Stats', 'schedulify' ); ?></h1>
-        <!-- Add your Cron Event Stats content here -->
+
+        <?php
+        $last_scheduled_missed_time = get_transient( 'wp_scheduled_missed_time' );
+        $missed_posts_count         = nv_wpmsp_get_missed_posts_count();
+
+        if ( false !== $last_scheduled_missed_time ) :
+            ?>
+            <p><?php esc_html_e( 'Last Cron Run:', 'schedulify' ); ?> <?php echo esc_html( date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $last_scheduled_missed_time ) ); ?></p>
+            <?php endif; ?>
+
+        <p><?php esc_html_e( 'Missed Scheduled Posts:', 'schedulify' ); ?> <?php echo esc_html( $missed_posts_count ); ?></p>
     </div>
     <?php
 }
@@ -294,4 +304,18 @@ function nv_wpmsp_get_interval() {
  */
 function nv_wpmsp_get_email_notifications() {
     return apply_filters( 'nv_wpmsp_email_notifications', get_option( 'nv_wpmsp_email_notifications', true ) );
+}
+
+/**
+ * Get the count of missed scheduled posts
+ *
+ * @return int
+ */
+function nv_wpmsp_get_missed_posts_count() {
+    global $wpdb;
+
+    $sql_query           = "SELECT COUNT(ID) FROM {$wpdb->posts} WHERE ( ( post_date > 0 ) ) AND post_status = 'future'";
+    $missed_posts_count = $wpdb->get_var( $sql_query );
+
+    return $missed_posts_count;
 }
