@@ -67,8 +67,10 @@ Schedulify allows you to control access by specifying user roles that are author
 
 == Screenshots ==
 
-1. Screenshot 1
-1. Screenshot 2
+1. Screenshot 1 - Settings saved
+1. Screenshot 2 - Scheduled posts page
+1. Screenshot 3 - Missed schedule post
+1. Screenshot 4 - Email example of a published post
 
 == Changelog ==
 
