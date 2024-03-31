@@ -1,13 +1,13 @@
 === Schedulify ===
-Contributors: lumiblog, wpcorner
-Donate link: https://wpcorner.co/donate/
-Tags: scheduled posts, blog posts, blog, posts, schedule posts
-Requires PHP: 7.4
-Requires at least: 5.8
-Tested up to: 6.3.4
-Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* Contributors: lumiblog, wpcorner
+* Donate link: https://wpcorner.co/donate/
+* Tags: scheduled posts, blog posts, blog, posts, schedule posts
+* Requires PHP: 7.4
+* Requires at least: 5.8
+* Tested up to: 6.3.4
+* Stable tag: 1.0.0
+* License: GPLv2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Schedulify is a WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. 
 
@@ -17,31 +17,19 @@ Schedulify is a WordPress plugin that automatically publishes all the scheduled 
 
 == Key Features ==
 
-= Automated Scheduled Post Publication =
+* **Automated Scheduled Post Publication**: Schedulify takes charge of scheduled post publication, automatically publishing posts that may have been missed by the default WordPress cron.
 
-Schedulify takes charge of scheduled post publication, automatically publishing posts that may have been missed by the default WordPress cron.
+* **Email Notifications**: Receive instant email notifications upon the successful publication of scheduled posts. Keep administrators informed about the latest updates directly in their inbox.
 
-= Email Notifications =
+* **Customizable Interval Settings**: Tailor the plugin to your needs by setting a custom interval for scheduled post checks. Choose intervals from 5 to 60 minutes, providing flexibility based on your site's requirements.
 
-Receive instant email notifications upon the successful publication of scheduled posts. Keep administrators informed about the latest updates directly in their inbox.
+* **User Role Access Control**: Fine-tune access control by specifying user roles that are permitted to manage the Schedulify settings. This feature ensures that only authorized users can configure and monitor the plugin.
 
-= Customizable Interval Settings =
+* **Detailed Plugin Settings**: Access a dedicated settings page within the WordPress dashboard, offering a user-friendly interface for configuring Schedulify. Admins can easily manage email notifications, custom intervals, and user role access.
 
-Tailor the plugin to your needs by setting a custom interval for scheduled post checks. Choose intervals from 5 to 60 minutes, providing flexibility based on your site's requirements.
+* **Plugin Activation Link**: Directly access the list of scheduled posts from the WordPress dashboard by utilizing the convenient "Scheduled Posts" link added under the 'Posts' menu.
 
-= User Role Access Control =
-
-Fine-tune access control by specifying user roles that are permitted to manage the Schedulify settings. This feature ensures that only authorized users can configure and monitor the plugin.
-
-= Detailed Plugin Settings =
-
-Access a dedicated settings page within the WordPress dashboard, offering a user-friendly interface for configuring Schedulify. Admins can easily manage email notifications, custom intervals, and user role access.
-
-= Plugin Activation Link = 
-
-Directly access the list of scheduled posts from the WordPress dashboard by utilizing the convenient "Scheduled Posts" link added under the 'Posts' menu.
-
-= Documentation and Support =
+== Documentation and Support ==
 
 Refer to the comprehensive plugin documentation for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
 
