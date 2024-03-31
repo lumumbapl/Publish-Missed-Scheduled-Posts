@@ -31,7 +31,7 @@ Schedulify is a WordPress plugin that automatically publishes all the scheduled 
 
 == Documentation and Support ==
 
-Refer to the comprehensive plugin documentation for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
+Refer to the comprehensive [plugin documentation](https://github.com/lumumbapl/Schedulify/wiki/Documentation) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
 
 == Frequently Asked Questions ==
 
@@ -63,10 +63,13 @@ To run Schedulify, we recommend your host supports:
 * MySQL version 5.6 or greater, or, MariaDB version 10.0 or greater.
 * HTTPS support.
 
-= Automatic installation =
+= Installation Process = 
 
-@TODO
-
+1. Go to the WordPress admin dashboard
+3. Navigate to `Plugins` > `Add New`
+4. Search for Schedulify
+5. Click `Install Now`
+6. Activate the plugin
 
 == Screenshots ==
 
