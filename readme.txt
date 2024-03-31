@@ -1,5 +1,5 @@
 === Schedulify ===
-* Contributors: lumiblog, wpcorner
+* Contributors: lumiblog, wpcornerke
 * Donate link: https://wpcorner.co/donate/
 * Tags: scheduled posts, blog posts, blog, posts, schedule posts
 * Requires PHP: 7.4
@@ -49,9 +49,24 @@ Enabling email notifications ensures that administrators receive instant notific
 
 = How can I control access to Schedulify settings? =
 
-Schedulify allows you to control access by specifying user roles that are authorized to manage the plugin settings. This enhances security and ensures only authorized users can configure the plugin.
+Schedulify allows you to control access by specifying user roles that are authorized to manage the plugin settings. This enhances security and ensures that only authorized users can configure the plugin.
 
 *Schedulify* is your reliable solution for efficient scheduled post management in WordPress, combining automation with user-friendly customization options. Upgrade your publishing workflow with Schedulify today!
+
+== Installation ==
+
+= Requirements =
+
+To run Schedulify, we recommend your host supports:
+
+* PHP version 7.4 or greater.
+* MySQL version 5.6 or greater, or, MariaDB version 10.0 or greater.
+* HTTPS support.
+
+= Automatic installation =
+
+@TODO
+
 
 == Screenshots ==
 
