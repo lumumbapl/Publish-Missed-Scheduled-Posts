@@ -31,7 +31,7 @@ Schedulify is a WordPress plugin that automatically publishes all the scheduled 
 
 == Documentation and Support ==
 
-Refer to the comprehensive plugin documentation for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
+Refer to the comprehensive [plugin documentation](https://github.com/lumumbapl/Schedulify/wiki/Documentation) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
 
 == Frequently Asked Questions ==
 
