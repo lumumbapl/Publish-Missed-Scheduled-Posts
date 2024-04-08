@@ -12,10 +12,7 @@ Text Domain: schedulify
 Domain Path: /languages
 */
 
-// Bail if not WordPress path
-if (!defined('ABSPATH')) {
-    return;
-}
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Plugin basename for further reference
 $schedulify_base_name = plugin_basename(__FILE__);
