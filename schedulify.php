@@ -12,7 +12,8 @@ Text Domain: schedulify
 Domain Path: /languages
 */
 
-  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; 
 
 // Plugin basename for further reference
 $schedulify_base_name = plugin_basename(__FILE__);
