@@ -1,11 +1,11 @@
-=== Schedulify ===
+=== Schedulify - The Ultimate WordPress Scheduled Post Manager ===
 * Contributors: lumiblog, wpcornerke
 * Donate link: https://wpcorner.co/donate/
-* Tags: scheduled posts, blog posts, blog, posts, schedule posts
+* Tags: scheduled posts, blog posts, blog, posts, missed scheduled posts
 * Requires PHP: 7.4
 * Requires at least: 5.8
 * Tested up to: 6.5
-* Stable tag: 1.0.0
+* Stable tag: 1.0.3
 * License: GPLv2 or later
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,17 +21,17 @@ Schedulify is a WordPress plugin that automatically publishes all the scheduled 
 
 * **Email Notifications**: Receive instant email notifications upon the successful publication of scheduled posts. Keep administrators informed about the latest updates directly in their inbox.
 
-* **Customizable Interval Settings**: Tailor the plugin to your needs by setting a custom interval for scheduled post checks. Choose intervals from 5 to 60 minutes, providing flexibility based on your site's requirements.
+* **Customizable Interval Settings**: Tailor the plugin to your needs by setting a custom interval for scheduled post checks. **Choose intervals from 5 to 60 minutes**, providing flexibility based on your site's requirements.
 
 * **User Role Access Control**: Fine-tune access control by specifying user roles that are permitted to manage the Schedulify settings. This feature ensures that only authorized users can configure and monitor the plugin.
 
-* **Detailed Plugin Settings**: Access a dedicated settings page within the WordPress dashboard, offering a user-friendly interface for configuring Schedulify. Admins can easily manage email notifications, custom intervals, and user role access.
+* **Detailed Plugin Settings**: Access a dedicated settings page within the WordPress dashboard, offering a user-friendly interface for configuring Schedulify. Admins can easily manage **email notifications**, **custom intervals**, and **user role access**.
 
 * **Plugin Activation Link**: Directly access the list of scheduled posts from the WordPress dashboard by utilizing the convenient "Scheduled Posts" link added under the 'Posts' menu.
 
 == Documentation and Support ==
 
-Refer to the comprehensive [plugin documentation](https://github.com/lumumbapl/Schedulify/wiki/Documentation) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](#).
+Refer to the comprehensive [plugin documentation](https://github.com/lumumbapl/Schedulify/wiki/Documentation) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](https://wordpress.org/support/plugin/schedulify/).
 
 == Frequently Asked Questions ==
 
@@ -73,17 +73,17 @@ To run Schedulify, we recommend your host supports:
 
 == Screenshots ==
 
-1. Screenshot 1 - Settings saved
+1. Screenshot 1 - Schedulify Settings saved
 1. Screenshot 2 - Scheduled posts page
 1. Screenshot 3 - Missed schedule post
 1. Screenshot 4 - Email example of a published post
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.3 =
 * Initial release
 
 == Upgrade Notice ==
 
-= 1.1.0 =
+= 1.0.4 =
 * A change since the previous version.
