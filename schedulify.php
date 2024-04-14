@@ -3,9 +3,8 @@
 Plugin Name: Schedulify
 Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators.
 Author: WP Corner
-Contributors: wpcornerke, lumiblog
 Author URI: https://wpcorner.co
-Version: 1.0.0
+Version: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: schedulify
