@@ -1,9 +1,9 @@
 # Schedulify
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.0.3-blue)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-green)
 
-# Schedulify - Automated Scheduled Post Management for WordPress
+# Schedulify - The Ultimate WordPress Scheduled Post Manager
 
 Schedulify is a powerful WordPress plugin designed to streamline the management of scheduled posts, ensuring timely publication 
 and providing essential tools for administrators. This plugin addresses the common challenges associated with WordPress cron 
@@ -37,7 +37,7 @@ Directly access the list of scheduled posts from the WordPress dashboard by util
 
 ### Documentation and Support:
 
-Refer to [the comprehensive plugin documentation](https://wpcorner.co/docs/schedulify/) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](https://wpcorner.co/contact).
+Refer to [the comprehensive plugin documentation](https://github.com/wpcorner/schedulify/wiki/Documentation) for detailed guidance on Schedulify's functionalities. Additionally, get support by visiting our [Support Page](https://wordpress.org/support/plugin/schedulify/).
 
 ## Installation
 
