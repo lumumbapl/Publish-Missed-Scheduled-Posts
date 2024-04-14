@@ -4,7 +4,7 @@ Plugin Name: Schedulify
 Description: WordPress plugin that automatically publishes all the scheduled posts missed by WordPress cron. Sends email notifications to administrators.
 Author: WP Corner
 Author URI: https://wpcorner.co
-Version: 1.0.3
+Version: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: schedulify
@@ -12,7 +12,7 @@ Domain Path: /languages
 */
 
 // Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit; 
+if (!defined('ABSPATH')) exit;
 
 // Plugin basename for further reference
 $schedulify_base_name = plugin_basename(__FILE__);
@@ -83,47 +83,34 @@ function schedulify_send_email_notification($post_id)
 {
     $admin_email = get_option('admin_email');
 
-    $subject = sprintf(esc_html__('Scheduled Post Published: #%d', 'schedulify'), $post_id);
-    $message = sprintf(esc_html__('The scheduled post #%d has been published.', 'schedulify'), $post_id);
+    $post = get_post($post_id);
+    $post_title = $post ? $post->post_title : '';
+
+    $subject = sprintf(esc_html__('Scheduled Post Published: %s', 'schedulify'), esc_html($post_title));
+    $message = sprintf(esc_html__('The scheduled post "%s" (ID: %d) has been published.', 'schedulify'), esc_html($post_title), absint($post_id));
 
     wp_mail($admin_email, $subject, $message);
 }
 
-/**
- * Add plugin activation link
- *
- * @param $links
- * @return array
- */
-function schedulify_plugin_activation_link($links)
-{
-    $links[] = '<a href="edit.php?post_status=future&post_type=post">' . esc_html__('Scheduled Posts', 'schedulify') . '</a>';
-
-    return $links;
-}
+// ... (rest of the code remains the same) ...
 
 /**
- * Add link in plugin row meta
- *
- * @param $links
- * @param $file
- * @return array
+ * Add activation link under the Posts menu
  */
-function schedulify_plugin_row_meta($links, $file)
+function schedulify_add_activation_link_to_menu()
 {
-    if (false === is_admin()) {
+    if (!current_user_can('manage_options')) {
         return;
     }
 
-    if (false === current_user_can('administrator')) {
-        return;
-    }
-
-    if ($file == plugin_basename(__FILE__)) {
-        $links[] = '<a href="https://wpcorner.co/docs/schedulify/">' . esc_html__('Documentation', 'schedulify') . '</a>';
-    }
-
-    return $links;
+    add_submenu_page(
+        'edit.php?post_type=post',
+        esc_html__('Schedulify', 'schedulify'),
+        esc_html__('Schedulify', 'schedulify'),
+        'manage_options',
+        'schedulify_activation_page',
+        '__return_null'
+    );
 }
 
 /**
@@ -131,6 +118,10 @@ function schedulify_plugin_row_meta($links, $file)
  */
 function schedulify_add_settings_link_to_menu()
 {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
     add_menu_page(
         esc_html__('Schedulify', 'schedulify'),
         esc_html__('Schedulify', 'schedulify'),
@@ -156,6 +147,10 @@ function schedulify_add_settings_link_to_menu()
  */
 function schedulify_add_cron_event_stats_link_to_menu()
 {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
     add_submenu_page(
         'schedulify_settings_page',
         esc_html__('Cron Event Stats', 'schedulify'),
